@@ -1,0 +1,82 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class RestaurantManagementSystem <<Presentation>>
+class AuthenticationServiceImplementation <<Business>>
+class AuthorizationService <<Business>>
+class MenuService <<Business>>
+class CustomerService <<Business>>
+class OrderService <<Business>>
+class PaymentService <<Business>>
+class InventoryService <<Business>>
+class BasicReportingService <<Business>>
+
+class DatabaseManager <<Data Access>>
+class UserRepository <<Data Access>>
+class RoleRepository <<Data Access>>
+class MenuItemRepository <<Data Access>>
+class MenuCategoryRepository <<Data Access>>
+class CustomerRepository <<Data Access>>
+class OrderRepository <<Data Access>>
+class OrderItemRepository <<Data Access>>
+class PaymentRepository <<Data Access>>
+class InventoryRepository <<Data Access>>
+class SupplierRepository <<Data Access>>
+class ReportingRepository <<Data Access>>
+
+class User
+class Role
+class UserSession
+class MenuItem
+class MenuCategory
+class Customer
+class Order
+class OrderItem
+class Payment
+class Inventory
+class Supplier
+
+RestaurantManagementSystem --> AuthenticationServiceImplementation
+RestaurantManagementSystem --> AuthorizationService
+RestaurantManagementSystem --> MenuService
+RestaurantManagementSystem --> CustomerService
+RestaurantManagementSystem --> OrderService
+RestaurantManagementSystem --> PaymentService
+RestaurantManagementSystem --> InventoryService
+RestaurantManagementSystem --> BasicReportingService
+
+AuthenticationServiceImplementation --> UserRepository
+AuthenticationServiceImplementation --> RoleRepository
+AuthorizationService --> User
+UserSession --> User
+User --> Role
+
+MenuService --> MenuCategoryRepository
+MenuService --> MenuItemRepository
+CustomerService --> CustomerRepository
+OrderService --> OrderRepository
+OrderService --> OrderItemRepository
+PaymentService --> PaymentRepository
+InventoryService --> InventoryRepository
+InventoryService --> SupplierRepository
+BasicReportingService --> ReportingRepository
+
+UserRepository --> DatabaseManager
+RoleRepository --> DatabaseManager
+MenuItemRepository --> DatabaseManager
+MenuCategoryRepository --> DatabaseManager
+CustomerRepository --> DatabaseManager
+OrderRepository --> DatabaseManager
+OrderItemRepository --> DatabaseManager
+PaymentRepository --> DatabaseManager
+InventoryRepository --> DatabaseManager
+SupplierRepository --> DatabaseManager
+ReportingRepository --> DatabaseManager
+
+Order "1" o-- "many" OrderItem
+OrderItem --> MenuItem
+Inventory --> Supplier
+MenuItem --> MenuCategory
+Payment --> Order
+Order --> Customer
+@enduml

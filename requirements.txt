@@ -1,0 +1,2 @@
+# Restaurant Management System - Phase 1
+# No external dependencies are required.
